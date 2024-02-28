@@ -1,5 +1,7 @@
 import Youtube from './youtube'
 import RenderName from './charukirti'
+import Chai from './justfun'
+
 
 
 function App() {
@@ -11,6 +13,8 @@ function App() {
      <h1>Vite react app {username}</h1>
     <Youtube />
     <RenderName />
+    <Chai/>
+   
     </>
    
   )

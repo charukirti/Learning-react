@@ -28,15 +28,28 @@ const AnotherElem = (
 )
 
 const actualReactElement = React.createElement(
-    'a',
-    {href: 'https://google.com', target: '_blank'},
-    'Click to visit google'
+  'a',
+  { href: 'https://google.com', target: '_blank' },
+  'Click to visit google'
 )
 
+function formatUser(user) {
+  return user.firstName + ' ' + user.lastName
+}
+
+const user = {
+  firstName: 'John',
+  lastName: 'Doe',
+}
+
+const element = <h1>Hello, {formatUser(user)}</h1>
+
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <App />
+  // <App />
 
   //    <MyApp/>
 
-//   actualReactElement
+  //   actualReactElement
+
+  element
 )
