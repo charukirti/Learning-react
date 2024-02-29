@@ -1,10 +1,14 @@
-import Card from "./Card"
+// import Card from './Card'
+
+import Button from "./Button"
 
 function App() {
-
-  return <>
-    <Card/>
-  </>
+  return (
+    <>
+      {/* <Card /> */}
+      <Button/>
+    </>
+  )
 }
 
 export default App
