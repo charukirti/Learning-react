@@ -1,0 +1,17 @@
+.success-msg {
+    font-size: 2.5em;
+    background-color: hsl(108, 88%, 54%);
+    color: hsl(0, 0%, 100%);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0;
+}
+
+.error-msg {
+    font-size: 2.5em;
+    background-color: hsl(0, 100%, 50%);
+    color: hsl(0, 0%, 100%);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0;
+}
