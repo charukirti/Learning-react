@@ -1,17 +1,11 @@
-import Student from "./Student"
+import Greet from "./Greet"
 
 function App() {
  
 
   return (
     <>
-      <Student name='John Doe' age={20} isStudent={true}/>
-
-      {/* Multiple components with different data */}
-
-      <Student name='Jane Doe' age={24} isStudent={false}/>
-
-      <Student/>
+     <Greet name='Charukirti' message={'Good Afternoon'}/>
     </>
   )
 }
