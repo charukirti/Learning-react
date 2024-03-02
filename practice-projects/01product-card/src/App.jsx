@@ -1,0 +1,13 @@
+import ProductCard from "./ProductCard"
+import ProductList from "./ProductList"
+
+function App() {
+ 
+  return (
+    <>
+      <ProductList/>
+    </>
+  )
+}
+
+export default App
