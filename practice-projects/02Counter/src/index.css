@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* allining all the items center */
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #2d3436;
+  font-family: 'Lato', sans-serif;
+}
+
+/* styling heading */
+.heading {
+  font-size: 2.5rem;
+  color: #9b59b6;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 900;
+}
+
+/* styling counter */
+.counter {
+  background-color: #ecf0f1;
+  width: 24rem;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 10px;
+}
+
+/* styling count value */
+.count-value {
+  font-size: 2.5rem;
+}
+
+/* styling button container */
+.btn-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* styling buttons */
+.btn-container .btn {
+  padding: 10px 14px;
+  background-color: #ff7979;
+  border-radius: 5px;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+}
