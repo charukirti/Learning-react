@@ -1,12 +1,10 @@
-// import MyComponent from "./MyComponent"
-// import SimpleCounter from "./SimpleCounter"
-import Counter from "./Counter";
+// import MyCarComponent from "./MyCarComponent";
+// import MyFoodComponent from "./MyFoodComponent";
+import MyArrayObject from "./MyArrayObjectComponent";
 function App() {
   return (
     <>
-      {/* <MyComponent/> */}
-      {/* <SimpleCounter/> */}
-      <Counter />
+      <MyArrayObject />
     </>
   );
 }
