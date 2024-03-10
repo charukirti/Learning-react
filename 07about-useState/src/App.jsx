@@ -1,10 +1,12 @@
 // import MyCarComponent from "./MyCarComponent";
 // import MyFoodComponent from "./MyFoodComponent";
-import MyArrayObject from "./MyArrayObjectComponent";
+// import MyArrayObject from "./MyArrayObjectComponent";
+import MyTodoList from './MyTodoList'
+
 function App() {
   return (
     <>
-      <MyArrayObject />
+      <MyTodoList />
     </>
   );
 }
