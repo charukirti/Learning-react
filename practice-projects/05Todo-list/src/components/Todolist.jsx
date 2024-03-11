@@ -1,18 +1,26 @@
 import PropTypes from "prop-types";
 
-function TodoList( {tasks, deleteTask, moveTaskUp, moveTaskDown} ) {
+function TodoList({ tasks, deleteTask, moveTaskUp, moveTaskDown }) {
   return (
-    <ul>
+    <ul className="task-list">
       {tasks.map((task, index) => (
-        <li key={index}>
+        <li className="task-list-item" key={index}>
           <span className="text">{task}</span>{" "}
           <button className="delete-btn" onClick={() => deleteTask(index)}>
             Delete
           </button>
-          <button className="btn-move-up" onClick={() => moveTaskUp(index)}>
+          <button
+            className="btn-move-up"
+            onClick={() => moveTaskUp(index)}
+            title="Move Up"
+          >
             🔼
           </button>
-          <button className="btn-move-down" onClick={() => moveTaskDown(index)}>
+          <button
+            className="btn-move-down"
+            onClick={() => moveTaskDown(index)}
+            title="Move down"
+          >
             🔻
           </button>
         </li>

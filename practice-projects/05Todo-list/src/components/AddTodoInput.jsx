@@ -14,11 +14,13 @@ function AddTodoInput({ addTask }) {
     if (newTask.trim() !== "") {
       addTask(newTask);
       setNewTasks("");
+    } else {
+      alert('Input cannot be empty')
     }
   }
 
   return (
-    <div>
+    <div className="todo-input-container">
       <input
         type="text"
         placeholder="Enter a task..."

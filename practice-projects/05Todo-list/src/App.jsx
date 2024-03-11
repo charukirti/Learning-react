@@ -3,11 +3,7 @@ import AddTodoItem from "./components/AddTodoInput";
 import TodoList from "./components/Todolist";
 
 function App() {
-  const [tasks, setTasks] = useState([
-    "Eat breakfast",
-    "Take a shower",
-    "Learn React.js",
-  ]); // default tasks
+  const [tasks, setTasks] = useState([]); // default tasks
 
   /*  function to add task */
 
@@ -47,15 +43,17 @@ function App() {
   }
 
   return (
-    <div className="todo-list-container">
+    <div className="todo-wrapper">
       <h1>Todo List</h1>
-      <AddTodoItem addTask={addTask} />
-      <TodoList
-        tasks={tasks}
-        deleteTask={deleteTask}
-        moveTaskUp={moveTaskUp}
-        moveTaskDown={moveTaskDown}
-      />
+      <div className="todo-list-container">
+        <AddTodoItem addTask={addTask} />
+        <TodoList
+          tasks={tasks}
+          deleteTask={deleteTask}
+          moveTaskUp={moveTaskUp}
+          moveTaskDown={moveTaskDown}
+        />
+      </div>
     </div>
   );
 }
