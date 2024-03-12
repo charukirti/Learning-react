@@ -3,14 +3,21 @@ import { useState } from "react";
 function MyFoodComponent() {
   const [foods, setFood] = useState(["Banana", "Orange", "Grapes"]);
 
+  // Adds new food to the list
   function handleAddFood() {
+    // gets the value from the input
     const newFood = document.getElementById("foodInput").value;
+
+    // Clears the input
     document.getElementById("foodInput").value = "";
 
+    // adds the new food item to the array and updates the state
     setFood((food) => [...food, newFood]);
   }
 
+  // Removes a food item from the list by its index
   function handleRemoveFood(index) {
+    // Updates the 'foods' state by filtering out the item at the specified index
     setFood(foods.filter((_, i) => i !== index));
   }
 
