@@ -1,13 +1,15 @@
-import Greet from "./Greet"
+import LiftingStateUp from "./LifitingStateUp";
 
 function App() {
- 
+  function getData(data) {
+    console.log(data);
+  }
 
   return (
     <>
-     <Greet name='Charukirti' message={'Good Afternoon'}/>
+      <LiftingStateUp myClick={getData} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
