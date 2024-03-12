@@ -1,11 +1,11 @@
-import Lists from "./List-revise"
+import RenderList from "./List-rendering"
 
 function App() {
   
 
   return (
     <>
-     <Lists/>
+     <RenderList/>
     </>
   )
 }
