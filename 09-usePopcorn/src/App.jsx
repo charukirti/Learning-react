@@ -55,12 +55,35 @@ const KEY = "8f827595";
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState("");
+  const query = "avengers";
 
   // fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=avengers`).then((res) => res.json()).then(data => console.log(data));
 
-  useEffect(function() {
-    fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=avengers`).then((res) => res.json()).then(data => setMovies(data.Search));
-  }, [])
+  useEffect(function () {
+    async function fetchMovies() {
+      try {
+        setIsLoaded(true);
+
+        const res = await fetch(
+          `http://www.omdbapi.com/?apikey=${KEY}&s=${query}`
+        );
+
+        if (!res.ok) throw new Error("Unable to fetch :(");
+
+        const data = await res.json();
+
+        setMovies(data.Search);
+      } catch (err) {
+        setError(err);
+      } finally {
+        setIsLoaded(false);
+      }
+    }
+
+    fetchMovies();
+  }, []);
 
   return (
     <>
@@ -79,9 +102,7 @@ export default function App() {
           }
         /> */}
 
-        <Box>
-          <MovieList movies={movies} />
-        </Box>
+        <Box>{isLoaded ? <Loader /> : <MovieList movies={movies} />}</Box>
 
         <Box>
           <WatchedSummary watched={watched} />
@@ -90,6 +111,20 @@ export default function App() {
         {/* <WatchedBox /> */}
       </Main>
     </>
+  );
+}
+
+function Loader() {
+  return <p className="loader">Loading</p>;
+}
+
+function ErrorMessage({ message }) {
+  return (
+    <p>
+      <span>⛔</span>
+
+      {message}
+    </p>
   );
 }
 
