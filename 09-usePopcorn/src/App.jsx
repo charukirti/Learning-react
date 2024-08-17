@@ -9,10 +9,15 @@ const KEY = "8f827595";
 export default function App() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
-  const [watched, setWatched] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState("");
   const [selectedId, setSelectedId] = useState(null);
+
+  // const [watched, setWatched] = useState([]);
+  const [watched, setWatched] = useState(function () {
+    const storedValue = localStorage.getItem("watched");
+    return JSON.parse(storedValue);
+  });
 
   function handleSelectMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
@@ -26,6 +31,8 @@ export default function App() {
 
   function handleAddWatched(movie) {
     setWatched((watched) => [...watched, movie]);
+
+    // localStorage.setItem('Watched', JSON.stringify([...watched, movie]))
   }
 
   function handleDeleteWatched(id) {
@@ -76,6 +83,13 @@ export default function App() {
       };
     },
     [query]
+  );
+
+  useEffect(
+    function () {
+      localStorage.setItem("watched", JSON.stringify(watched));
+    },
+    [watched]
   );
 
   return (
@@ -162,6 +176,13 @@ function Logo() {
 }
 
 function Search({ query, setQuery }) {
+
+  useEffect(function(){
+    const el = document.querySelector('.search')
+    console.log(el)
+    el.focus()
+  },[])
+
   return (
     <input
       className="search"
@@ -379,7 +400,7 @@ function MovieDetail({ selectedId, onCloseMovie, onAddWatched, watched }) {
               </p>
             </div>
           </header>
-{/* <p>{avgRating}</p> */}
+          {/* <p>{avgRating}</p> */}
           <section>
             <div className="rating">
               {!isWatched ? (
