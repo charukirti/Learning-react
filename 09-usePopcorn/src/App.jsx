@@ -2,18 +2,17 @@ import { useEffect, useRef, useState } from "react";
 import StarRating from "./StarRating";
 import { useMovies } from "./useMovies";
 import { useLocalStorageState } from "./useLocalStorageState";
+import { useKey } from "./useKey";
 
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
-
-
 
 const KEY = "8f827595";
 export default function App() {
   const [query, setQuery] = useState("");
   const [selectedId, setSelectedId] = useState(null);
- const{movies, isLoaded, error} = useMovies(query)
- const [watched, setWatched] = useLocalStorageState([], 'watched')
+  const { movies, isLoaded, error } = useMovies(query);
+  const [watched, setWatched] = useLocalStorageState([], "watched");
 
   // const [watched, setWatched] = useState([]);
   // const [watched, setWatched] = useState(function () {
@@ -40,8 +39,6 @@ export default function App() {
   function handleDeleteWatched(id) {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
-
-  
 
   // useEffect(
   //   function () {
@@ -136,25 +133,11 @@ function Logo() {
 function Search({ query, setQuery }) {
   const inputEl = useRef(null);
 
-  useEffect(
-    function () {
-      console.log(inputEl.current);
-      // inputEl.current.focus()
-
-      function callback(e) {
-        if (document.activeElement === inputEl.current) return;
-        if (e.code === "Enter") {
-          inputEl.current.focus();
-          setQuery("");
-        }
-      }
-
-      document.addEventListener("keydown", callback);
-
-      return () => document.addEventListener("keydown", callback);
-    },
-    [setQuery]
-  );
+  useKey("Enter", function () {
+    if (document.activeElement === inputEl.current) return;
+    inputEl.current.focus();
+    setQuery("");
+  });
 
   // useEffect(function(){
   //   const el = document.querySelector('.search')
@@ -255,7 +238,7 @@ function MovieDetail({ selectedId, onCloseMovie, onAddWatched, watched }) {
 
   useEffect(
     function () {
-     if(userRating) countRef.current = countRef.current + 1;
+      if (userRating) countRef.current = countRef.current + 1;
     },
     [userRating]
   );
@@ -307,7 +290,7 @@ function MovieDetail({ selectedId, onCloseMovie, onAddWatched, watched }) {
       imdbRating: Number(imdbRating),
       runtime: Number(runtime.split(" ").at(0)),
       userRating,
-      countRatingDecisions: countRef.current
+      countRatingDecisions: countRef.current,
     };
 
     onAddWatched(newWatchedMovie);
@@ -316,22 +299,7 @@ function MovieDetail({ selectedId, onCloseMovie, onAddWatched, watched }) {
     // setAvgRating(Number(imdbRating))
   }
 
-  useEffect(
-    function () {
-      function callback(e) {
-        if (e.code === "Escape") {
-          onCloseMovie();
-        }
-      }
-
-      document.addEventListener("keydown", callback);
-
-      return function () {
-        document.removeEventListener("keydown", callback);
-      };
-    },
-    [onCloseMovie]
-  );
+  useKey("ESCAPE", onCloseMovie);
 
   useEffect(
     function () {
