@@ -1,5 +1,44 @@
 import { useReducer } from "react";
 
+
+/* 
+
+* useReducer
+
+in certainn situations state management with useState hook is not enough:-
+
+1:- When components have a lot of state variable and state updates, spread across many event handlers all over the component
+
+2:- When multiple state updates need to happen same time
+
+3:- When updating one piece of state depends on one or more other pieces of state
+
+and in these type of situations useReducer can help
+
+
+** state with useReducer
+
+👉 An alternative way of setting state, best for managing complex state and related pieces of state
+
+```
+  JS
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+```
+
+👉 Stores related pieces of state in a state object
+
+👉 useReducer takes reducer function which contains all the logic for updating the state.Decouples state logic from component
+
+👉 reducer takes current state and action  and returns next state
+
+👉 action is the object which describes how to update the state
+
+👉 dispatch is a function which triggers the state updates, by sending actions from event handlers to the reducer
+
+*/
+
 const initalState = { count: 0, step: 1 };
 
 function reducer(state, action) {
