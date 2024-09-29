@@ -23,6 +23,42 @@
         "lat": "18.535606511943122",
         "lng": "73.87069702148439"
       }
+    },
+    {
+      "id": "74c7",
+      "cityName": "Kitikmeot, Unorganized",
+      "country": "Canada",
+      "emoji": "🇨🇦",
+      "date": "2024-09-29T08:11:34.347Z",
+      "notes": "",
+      "position": {
+        "lat": "65.80277639340238",
+        "lng": "-110.03906250000001"
+      }
+    },
+    {
+      "id": "cea5",
+      "cityName": "Cuatro Cienegas",
+      "country": "Mexico",
+      "emoji": "🇲🇽",
+      "date": "2024-09-29T08:11:48.811Z",
+      "notes": "",
+      "position": {
+        "lat": "26.745610382199022",
+        "lng": "-102.65625000000001"
+      }
+    },
+    {
+      "id": "0243",
+      "cityName": "Santiago",
+      "country": "Chile",
+      "emoji": "🇨🇱",
+      "date": "2024-09-29T08:12:04.134Z",
+      "notes": "",
+      "position": {
+        "lat": "-33.504759069226075",
+        "lng": "-70.83984375000001"
+      }
     }
   ]
 }
