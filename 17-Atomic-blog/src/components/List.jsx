@@ -1,8 +1,10 @@
 import { usePosts } from "../PostContext";
+import Test from '../Test'
 
 export default function List() {
   const {posts} = usePosts()
     return (
+      <>
       <ul>
         {posts.map((post, i) => (
           <li key={i}>
@@ -11,5 +13,8 @@ export default function List() {
           </li>
         ))}
       </ul>
+
+      {/* <Test/> */}
+      </>
     );
   }
