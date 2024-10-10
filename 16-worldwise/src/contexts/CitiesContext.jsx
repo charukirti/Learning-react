@@ -4,6 +4,7 @@ import {
   useEffect,
   useContext,
   useReducer,
+  useCallback,
 } from "react";
 const BASE_URL = "http://localhost:9000";
 
@@ -55,7 +56,7 @@ function reducer(state, action) {
         ...state,
         isLoading: false,
         cities: state.cities.filter((city) => city.id !== action.payload),
-        currentCity: {}
+        currentCity: {},
       };
 
     case "rejected":
@@ -100,23 +101,25 @@ function CitesProvider({ children }) {
     fetchCities();
   }, []);
 
-  async function getCity(id) {
+  const getCity = useCallback(
+    async function getCity(id) {
+      if (Number(id) === currentCity.id) return;
 
-    if(Number(id) === currentCity.id) return;
-
-    dispatch({ type: "loading" });
-    try {
-      const res = await fetch(`${BASE_URL}/cities/${id}`);
-      const data = await res.json();
-      dispatch({ type: "city/loaded", payload: data });
-    } catch (error) {
-      console.log(error);
-      dispatch({
-        type: "rejected",
-        payload: "There was an error while loading the city",
-      });
-    }
-  }
+      dispatch({ type: "loading" });
+      try {
+        const res = await fetch(`${BASE_URL}/cities/${id}`);
+        const data = await res.json();
+        dispatch({ type: "city/loaded", payload: data });
+      } catch (error) {
+        console.log(error);
+        dispatch({
+          type: "rejected",
+          payload: "There was an error while loading the city",
+        });
+      }
+    },
+    [currentCity.id]
+  );
 
   async function createCity(newCity) {
     dispatch({ type: "loading" });
@@ -129,7 +132,7 @@ function CitesProvider({ children }) {
         },
       });
       const data = await res.json();
-      dispatch({type: 'city/created', payload: data})
+      dispatch({ type: "city/created", payload: data });
     } catch (error) {
       console.log(error);
       dispatch({
@@ -145,7 +148,7 @@ function CitesProvider({ children }) {
       await fetch(`${BASE_URL}/cities/${id}`, {
         method: "DELETE",
       });
-      dispatch({type: 'city/deleted', payload: id})
+      dispatch({ type: "city/deleted", payload: id });
     } catch (error) {
       console.log(error);
       dispatch({
