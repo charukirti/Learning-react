@@ -1,4 +1,5 @@
-import { combineReducers, createStore } from "redux"; // it is deprecated and recommended to use modern redux-toolkit
+import { applyMiddleware, combineReducers, createStore } from "redux"; // it is deprecated and recommended to use modern redux-toolkit
+import {thunk}  from "redux-thunk";
 import accountReducer from "./features/accounts/accountSlice";
 import customerReducer from "./features/customers/customerSlice";
 // combining reducers
@@ -10,7 +11,7 @@ const rootReducer = combineReducers({
 
 // creating store
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 
 
