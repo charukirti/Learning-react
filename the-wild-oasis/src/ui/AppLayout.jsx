@@ -6,17 +6,24 @@ import styled from "styled-components";
 // making layout using grid
 
 const StyledAppLayout = styled.div`
-    display: grid;
-    grid-template-columns: 26rem 1fr;
-    grid-template-rows: auto 1fr;
-    height: 100vh;
-
-`
+  display: grid;
+  grid-template-columns: 26rem 1fr;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+`;
 
 const Main = styled.main`
   background-color: green;
   padding: 4rem 4.8rem 6.6rem;
   background-color: var(--color-grey-50);
+`;
+
+const Container = styled.div`
+  max-width: 120rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
 `;
 
 export default function AppLayout() {
@@ -25,7 +32,9 @@ export default function AppLayout() {
       <Header />
       <Sidebar />
       <Main>
-        <Outlet />
+        <Container>
+          <Outlet />
+        </Container>
       </Main>
     </StyledAppLayout>
   );
