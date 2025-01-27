@@ -1,4 +1,4 @@
-import supabase from "./supabase";
+import supabase, { supabaseUrl } from "./supabase";
 
 export async function getCabins() {
 
@@ -19,15 +19,41 @@ export async function getCabins() {
 
 export async function createCabin(newCabin) {
 
+    // https://ptidnexffkvtctgfumer.supabase.co/storage/v1/object/public/cabin-images/cabin-001.jpg
+
+    const imageName = `${Math.random()}-${newCabin.image.name}`.replaceAll('/', '');
+
+    const imagePath = `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`;
+
+    // 1. create a cabin
+
     const { data, error } = await supabase
         .from('cabins')
         .insert([
-            newCabin
+            { ...newCabin, image: imagePath }
         ])
         .select();
     if (error) {
         console.log(error);
         throw new Error('Cabins could not be loaded');
+    }
+
+    // 2. upload image
+
+    const { error: storageError } = await supabase
+        .storage
+        .from('cabin-images')
+        .upload(imageName, newCabin.image);
+
+    // 3. if there is an error while uploading the image, delete that cabin
+
+    if (storageError) {
+        await supabase
+            .from('cabins')
+            .delete()
+            .eq('id', data.id);
+        console.log(storageError);
+        throw new Error('Cabins cabin image could not be uploaded, and cabin could not be created');
     }
 
     // if every thing is okay
