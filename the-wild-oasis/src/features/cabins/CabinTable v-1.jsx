@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { getCabins } from "../../services/apiCabins";
 import Spinner from "../../ui/Spinner";
 import CabinRow from "./CabinRow";
-import { useCabins } from "./useCabins";
 
 const Table = styled.div`
   border: 1px solid var(--color-grey-200);
@@ -31,10 +30,11 @@ const TableHeader = styled.header`
 
 export default function CabinTable() {
   // to fetch data
-
-  const { isLoading, cabins } = useCabins();
-
-  if (isLoading) return <Spinner />;
+  const {isLoading, data: cabins, error} = useQuery({
+    queryKey: ['cabins'], // key to identify the query
+    queryFn: getCabins,
+  })
+  if(isLoading) return <Spinner/>
   return (
     <Table role="table">
       <TableHeader role="row">
@@ -46,9 +46,8 @@ export default function CabinTable() {
         <div></div>
       </TableHeader>
 
-      {cabins.map((cabin) => (
-        <CabinRow key={cabin.id} cabin={cabin} />
-      ))}
+     {cabins.map((cabin) => <CabinRow key={cabin.id} cabin={cabin} />)}
     </Table>
-  );
+  )
 }
+
