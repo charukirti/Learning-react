@@ -1,3 +1,4 @@
+import Empty from "../../ui/Empty";
 import Spinner from "../../ui/Spinner";
 import CabinRow from "./CabinRow";
 import { useCabins } from "./useCabins";
@@ -10,6 +11,8 @@ export default function CabinTable() {
 
   const { isLoading, cabins } = useCabins();
   const [searchParams] = useSearchParams();
+
+  // if(!cabins.length) return <Empty resourceName={'cabins'}/>
 
   if (isLoading) return <Spinner />;
   // 1) for filtering
