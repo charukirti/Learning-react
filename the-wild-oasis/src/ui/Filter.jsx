@@ -39,7 +39,7 @@ export default function Filter({ fieldName, filterOptions }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const currentFilter =
-    searchParams.get(fieldName) || filterOptions.at(0).value;
+    searchParams.get(fieldName) || filterOptions?.at(0).value;
 
   function handleClick(value) {
     searchParams.set(fieldName, value);
@@ -50,7 +50,7 @@ export default function Filter({ fieldName, filterOptions }) {
 
   return (
     <StyledFilter>
-      {filterOptions.map((option) => (
+      {filterOptions?.map((option) => (
         <FilterButton
           onClick={() => handleClick(option.value)}
           key={option.value}
