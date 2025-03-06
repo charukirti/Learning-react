@@ -33,7 +33,7 @@ export async function getBookings({ filter, sortBy, page }) {
   }
 
   // if every thing is okay
-  console.log(count);
+
 
   return { data, count };
 }

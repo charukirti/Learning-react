@@ -8,7 +8,7 @@ import { useBookings } from "./useBookings";
 
 function BookingTable() {
   const { bookings, isLoading, count } = useBookings();
-  console.log(bookings);
+
 
   // if (!bookings.length) return <Empty resourceName={'bookings'} />
 
